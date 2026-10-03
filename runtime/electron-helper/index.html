@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'none'; img-src 'self' file: data:; style-src 'self'; script-src 'self'"
+    />
+    <title>dsh-deskpet</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <!-- 整个窗口就是一张透明画布；#pet-root 是宠物本体，气泡挂在它头顶 -->
+    <div id="pet-root">
+      <div id="bubble"><span id="bubble-text"></span></div>
+      <img id="sprite" alt="deskpet" draggable="false" />
+    </div>
+    <script src="./pet.js"></script>
+    <script src="./renderer.js"></script>
+  </body>
+</html>

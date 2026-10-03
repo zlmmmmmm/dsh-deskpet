@@ -1,0 +1,58 @@
+{
+  "name": "dsh-deskpet",
+  "version": "0.1.0",
+  "private": true,
+  "description": "常驻 Windows 桌面的 DeepSeek Harness 桌面宠物：独立透明置顶窗，DSH 最小化后依然在；DSH 忙完/要你确认时它来提醒，点它一下把 DSH 叫回来。",
+  "keywords": [
+    "dsh",
+    "dsh-plugin",
+    "deepseek-harness",
+    "desktop-pet",
+    "electron"
+  ],
+  "license": "MIT",
+  "type": "module",
+  "main": "lib/index.js",
+  "exports": {
+    ".": "./lib/index.js",
+    "./client": "./lib/client.js",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "lib",
+    "runtime",
+    "assets",
+    "cordis.patch.yml"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web",
+      "inject": [
+        "@deepseek-ai/dsh-client-connection",
+        "@deepseek-ai/dsh-client-ui-slots"
+      ]
+    }
+  },
+  "scripts": {
+    "build": "tsdown",
+    "watch": "tsdown --watch",
+    "typecheck": "tsc --noEmit && tsc -p tsconfig.client.json --noEmit",
+    "start:helper": "node scripts/start-helper.mjs"
+  },
+  "peerDependencies": {
+    "@deepseek-ai/cordis": "^4.0.4",
+    "react": "^18.2.0"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.0",
+    "@types/react": "^18.3.0",
+    "tsdown": "^0.22.2",
+    "typescript": "^6.0.3"
+  }
+}

@@ -1,0 +1,12 @@
+# 统一换行符：避免 Windows 上提交 CRLF、别人 clone 下来又是另一套
+* text=auto eol=lf
+
+# 二进制素材别碰
+*.png binary
+*.jpg binary
+*.ico binary
+*.ttf binary
+*.webm binary
+
+# 构建产物在 diff 里折叠
+lib/*.js linguist-generated=true

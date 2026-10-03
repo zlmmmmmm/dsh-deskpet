@@ -1,0 +1,23 @@
+# 依赖与构建缓存
+node_modules/
+.pnpm-store/
+
+# 含个人信息的截图：只在本地保留，不进仓库
+docs/screenshots-local/
+
+# 运行时产物 / 日志
+*.log
+helper.log
+helper.json
+main-config.jsonc
+
+# 编辑器与系统
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# 临时
+*.tmp
+*.bak

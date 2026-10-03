@@ -1,0 +1,97 @@
+/* ============================================================================
+   dsh-deskpet 宠物窗样式
+   窗口本身就是透明画布：留白区域必须完全透明（穿透靠主进程，不靠 CSS）
+   ========================================================================== */
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: transparent;
+}
+
+body {
+  -webkit-user-select: none;
+  user-select: none;
+  cursor: default;
+  font-family: 'Microsoft YaHei', 'Segoe UI', system-ui, sans-serif;
+}
+
+/* 宠物本体容器：位置与尺寸由 JS 按几何写入，动画只改 transform */
+#pet-root {
+  position: absolute;
+  transform-origin: 50% 100%;
+  will-change: transform;
+  cursor: grab;
+}
+
+#pet-root.dragging {
+  cursor: grabbing;
+}
+
+#sprite {
+  display: block;
+  width: 100%;
+  height: 100%;
+  -webkit-user-drag: none;
+  user-select: none;
+  pointer-events: none;
+  filter: drop-shadow(0 6px 10px rgba(0, 0, 0, 0.28));
+}
+
+/* ---------------------------------------------------------------- 气泡 ---- */
+#bubble {
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 6px);
+  transform: translateX(-50%) scale(0.9);
+  transform-origin: 50% 100%;
+  /* 宽度跟着宠物尺寸走，小宠物不会被大气泡盖住 */
+  max-width: calc(var(--pet-size, 190px) * 1.25 + 60px);
+  padding: 7px 11px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.97);
+  color: #23303f;
+  font-size: 13px;
+  line-height: 1.35;
+  text-align: center;
+  white-space: pre-wrap;
+  word-break: break-word;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.22);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.16s ease, transform 0.16s ease;
+}
+
+#bubble.show {
+  opacity: 1;
+  transform: translateX(-50%) scale(1);
+}
+
+/* 气泡小尾巴 */
+#bubble::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 100%;
+  margin-left: -6px;
+  border: 6px solid transparent;
+  border-top-color: rgba(255, 255, 255, 0.97);
+}
+
+/* 提醒等级配色：完成 / 要你确认 / 出错 */
+#bubble.info {
+  border-left: 3px solid #4c8dff;
+}
+#bubble.success {
+  border-left: 3px solid #2ecc71;
+}
+#bubble.attention {
+  border-left: 3px solid #f5a623;
+}
+#bubble.error {
+  border-left: 3px solid #e74c3c;
+}

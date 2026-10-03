@@ -1,0 +1,7 @@
+{
+  "name": "dsh-deskpet-helper",
+  "version": "0.1.0",
+  "private": true,
+  "description": "dsh-deskpet 桌面运行时：透明置顶宠物窗（独立 Electron 进程）",
+  "main": "main.js"
+}

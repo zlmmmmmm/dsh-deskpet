@@ -1,0 +1,14 @@
+{
+  // 客户端半侧的检查口径刻意比宿主半侧松：
+  //   - 它是一层 React/DOM 胶水，运行时契约是 DSH 的 __ModuleLoader__（本身无类型）；
+  //   - 元素工厂 h 的手写重载很难让每个内联事件回调都拿到上下文类型，
+  //     强行补注解只会让这个文件变成噪音。
+  // 数据模型（ConfigDraft / SpeciesInfo）仍是显式声明的，逻辑密集的宿主半侧保持 strict。
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "noImplicitAny": false,
+    "noUncheckedIndexedAccess": false
+  },
+  "include": ["src/client"],
+  "exclude": []
+}
